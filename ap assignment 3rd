@@ -1,0 +1,46 @@
+ Implement a factory design pattern for creating different types of Animals (Dog, Cat, Bird) usingaAnimalFactory class.
+
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+    @abstractmethod
+    def speak(self):
+        pass
+
+
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+
+class Cat(Animal):
+    def speak(self):
+        return "Meow!"
+
+class Bird(Animal):
+    def speak(self):
+        return "Tweet!"
+
+class AnimalFactory:
+    @staticmethod
+    def create_animal(animal_type):
+        if animal_type.lower() == "dog":
+            return Dog()
+        elif animal_type.lower() == "cat":
+            return Cat()
+        elif animal_type.lower() == "bird":
+            return Bird()
+        else:
+            raise ValueError("Unknown animal type!")
+
+
+if __name__ == "__main__":
+    factory = AnimalFactory()
+    
+    animal1 = factory.create_animal("dog")
+    print("Dog says:", animal1.speak())
+    
+    animal2 = factory.create_animal("cat")
+    print("Cat says:", animal2.speak())
+    
+    animal3 = factory.create_animal("bird")
+    print("Bird says:", animal3.speak())
